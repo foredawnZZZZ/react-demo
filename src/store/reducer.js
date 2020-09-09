@@ -1,34 +1,24 @@
-import { ADD_LIST_ITEM } from './actionTypes'
+import { ADD_LIST_ITEM, CHANGE_INPUT_VALUE } from './actionTypes';
 
-const defalutState = {
+const defaultState = {
   iptVal: "",
-  list: [{
-      id: 0,
-      title: "one test"
-    },
-    {
-      id: 1,
-      title: "two test"
-    },
-    {
-      id: 2,
-      title: "three test"
-    },
-    {
-      id: 3,
-      title: "four test"
-    },
-    {
-      id: 4,
-      title: "five test"
-    }
-  ]
+  list: [1, 2, 3, 4, 7, 65]
 }
 
-export default (state = defalutState, action) => {
-  if(action.type === ADD_LIST_ITEM) {
-    let newState = JSON.parse(JSON.stringify(state))
-    console.log(newState);
+export default (state = defaultState, action) => {
+  if(action.type === CHANGE_INPUT_VALUE) {
+    let newState = JSON.parse(JSON.stringify(state));
+    newState.iptVal = action.val;
+    return newState;
   }
-  return state;
+  if(action.type === ADD_LIST_ITEM) {
+    let newState = JSON.parse(JSON.stringify(state));
+    newState.list.push(newState.iptVal);
+    newState.iptVal = "";
+    return newState;
+  }
+  if(action.type === DEL_LIST_ITEM) {
+    
+  }
+  return state
 }
